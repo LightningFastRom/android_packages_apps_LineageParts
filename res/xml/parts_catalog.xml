@@ -39,11 +39,6 @@
           android:fragment="org.lineageos.lineageparts.input.ButtonSettings"
           lineage:xmlRes="@xml/button_settings" />
 
-    <part android:key="contributors"
-          android:title="@string/contributors_cloud_fragment_title"
-          android:fragment="org.lineageos.lineageparts.contributors.ContributorsCloudFragment"
-          lineage:xmlRes="@xml/contributors_cloud" />
-
     <part android:key="livedisplay"
           android:title="@*lineageos.platform:string/live_display_title"
           android:summary="@string/live_display_summary"
@@ -87,10 +82,10 @@
           android:fragment="org.lineageos.lineageparts.applications.LongScreenSettings"
           lineage:xmlRes="@xml/long_screen_prefs" />
 
-    <part android:key="charging_sounds_settings"
+    <!-- <part android:key="charging_sounds_settings"
           android:title="@string/charging_sounds_settings_title"
           android:fragment="org.lineageos.lineageparts.sounds.ChargingSoundsSettings"
-          lineage:xmlRes="@xml/charging_sounds_settings" />
+          lineage:xmlRes="@xml/charging_sounds_settings" /> -->
 
     <part android:key="touchscreen_gesture_settings"
           android:title="@string/touchscreen_gesture_settings_title"
