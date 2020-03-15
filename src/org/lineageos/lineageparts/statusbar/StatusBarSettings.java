@@ -192,6 +192,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                         : R.string.status_bar_quick_qs_pulldown_summary_right));
                 break;
 			case PULLDOWN_DIR_BOTH:
+				summary = getResources().getString(
+                    R.string.status_bar_quick_qs_pulldown_both);
+                break;
         }
         mQuickPulldown.setSummary(summary);
     }
