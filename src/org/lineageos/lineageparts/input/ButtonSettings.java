@@ -126,7 +126,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
     private SwitchPreference mCameraLaunch;
     private ListPreference mVolumeKeyCursorControl;
     private SwitchPreference mVolumeWakeScreen;
-    private SwitchPreference mVolumeMusicControls;
     private SwitchPreference mSwapVolumeButtons;
     private SwitchPreference mVolumePanelOnLeft;
     private SwitchPreference mDisableNavigationKeys;
