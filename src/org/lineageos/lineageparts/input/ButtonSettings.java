@@ -820,7 +820,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
                 result.add(KEY_SWAP_VOLUME_BUTTONS);
                 result.add(KEY_VOLUME_ANSWER_CALL);
                 result.add(KEY_VOLUME_KEY_CURSOR_CONTROL);
-                result.add(KEY_VOLUME_MUSIC_CONTROLS);
                 result.add(KEY_VOLUME_PANEL_ON_LEFT);
                 result.add(KEY_VOLUME_WAKE_SCREEN);
                 result.add(KEY_CLICK_PARTIAL_SCREENSHOT);
