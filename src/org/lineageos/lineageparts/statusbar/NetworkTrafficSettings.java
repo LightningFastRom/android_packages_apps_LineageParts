@@ -33,7 +33,6 @@ public class NetworkTrafficSettings extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener  {
 
     private static final String TAG = "NetworkTrafficSettings";
-    private static final String STATUS_BAR_CLOCK_STYLE = "status_bar_clock";
 
     private DropDownPreference mNetTrafficMode;
     private LineageSecureSettingSwitchPreference mNetTrafficAutohide;
@@ -65,7 +64,6 @@ public class NetworkTrafficSettings extends SettingsPreferenceFragment
         mNetTrafficShowUnits.setOnPreferenceChangeListener(this);
 
         updateEnabledStates(mode);
-        updateForClockConflicts();
     }
 
     @Override
@@ -75,7 +73,6 @@ public class NetworkTrafficSettings extends SettingsPreferenceFragment
             LineageSettings.Secure.putInt(getActivity().getContentResolver(),
                     LineageSettings.Secure.NETWORK_TRAFFIC_MODE, mode);
             updateEnabledStates(mode);
-            updateForClockConflicts();
         } else if (preference == mNetTrafficUnits) {
             int units = Integer.valueOf((String) newValue);
             LineageSettings.Secure.putInt(getActivity().getContentResolver(),
@@ -89,20 +86,5 @@ public class NetworkTrafficSettings extends SettingsPreferenceFragment
         mNetTrafficAutohide.setEnabled(enabled);
         mNetTrafficUnits.setEnabled(enabled);
         mNetTrafficShowUnits.setEnabled(enabled);
-    }
-
-    private void updateForClockConflicts() {
-        int clockPosition = LineageSettings.System.getInt(getActivity().getContentResolver(),
-                STATUS_BAR_CLOCK_STYLE, 2);
-
-        if (clockPosition != 1) {
-            return;
-        }
-
-        mNetTrafficMode.setEnabled(false);
-        Toast.makeText(getActivity(),
-                R.string.network_traffic_disabled_clock,
-                Toast.LENGTH_LONG).show();
-        updateEnabledStates(0);
     }
 }

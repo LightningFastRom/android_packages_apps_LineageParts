@@ -63,15 +63,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final int HOLE_PUNCH_CAMERA_POSITION_CENTER = 2;
 	private static final int HOLE_PUNCH_CAMERA_POSITION_LEFT = 3;
 
-    private static final String NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
-
     private LineageSystemSettingListPreference mQuickPulldown;
     private LineageSystemSettingListPreference mStatusBarClock;
     private SecureSettingSwitchPreference mStatusBarAmPm;
 
     private PreferenceCategory mStatusBarBatteryCategory;
     private PreferenceCategory mStatusBarClockCategory;
-    private PreferenceScreen mNetworkTrafficPref;
 
     private boolean mHasNotch;
 	private int mHolePunchCameraPosition;
@@ -81,15 +78,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.status_bar_settings);
 
-        sHasNotch = getResources().getBoolean(
+        mHasNotch = getResources().getBoolean(
                 org.lineageos.platform.internal.R.bool.config_haveNotch);
 		mHolePunchCameraPosition = getResources().getInteger(
                 org.lineageos.platform.internal.R.integer.config_holePunchCameraPosition);
-
-        mHasNotch = DeviceUtils.hasNotch(getActivity());
-        if (mHasNotch) {
-            getPreferenceScreen().removePreference(mNetworkTrafficPref);
-        }
 
         mStatusBarAmPm = findPreference(STATUS_BAR_AM_PM);
         mStatusBarClock = findPreference(STATUS_BAR_CLOCK_STYLE);
@@ -122,7 +114,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             getPreferenceScreen().addPreference(mStatusBarClockCategory);
         }
 
-		final boolean disallowAMPM = sHasNotch;
+		final boolean disallowAMPM = mHasNotch;
 		
         if (DateFormat.is24HourFormat(getActivity())) {
             mStatusBarAmPm.setEnabled(false);
@@ -170,9 +162,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                 	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values);
 				}
         }
-
-        // Disable network traffic preferences if clock is centered in the status bar
-        updateNetworkTrafficStatus(getClockPosition());
     }
 	
 	public boolean HasCenterPunch() {
@@ -229,25 +218,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mQuickPulldown.setSummary(summary);
     }
 
-    private void updateNetworkTrafficStatus(int clockPosition) {
-        if (mHasNotch) {
-            // Unconditional no network traffic for you
-            return;
-        }
-
-        boolean isClockCentered = clockPosition == 1;
-        mNetworkTrafficPref.setEnabled(!isClockCentered);
-        mNetworkTrafficPref.setSummary(getResources().getString(isClockCentered ?
-                R.string.network_traffic_disabled_clock :
-                R.string.network_traffic_settings_summary
-        ));
-    }
-
-    private int getNetworkTrafficStatus() {
-        return LineageSettings.Secure.getInt(getActivity().getContentResolver(),
-                LineageSettings.Secure.NETWORK_TRAFFIC_MODE, 0);
-    }
-
     private int getClockPosition() {
         return LineageSettings.System.getInt(getActivity().getContentResolver(),
                 STATUS_BAR_CLOCK_STYLE, 2);
@@ -259,10 +229,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         @Override
         public Set<String> getNonIndexableKeys(Context context) {
             final Set<String> result = new ArraySet<String>();
-
-            if (DeviceUtils.hasNotch(context)) {
-                result.add(NETWORK_TRAFFIC_SETTINGS);
-            }
             return result;
         }
     };
