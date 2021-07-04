@@ -74,10 +74,10 @@
             android:defaultValue="false" />
 
         <lineageos.preference.SecureSettingSwitchPreference
-            android:key="status_bar_am_pm"
+            android:key="clock_am_pm"
             android:title="@string/status_bar_am_pm_title"
             android:summary="@string/status_bar_am_pm_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 
