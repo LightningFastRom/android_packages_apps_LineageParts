@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 	Copyright (C) 2015 The CyanogenMod Project
-	              2017-2020 The LineageOS Project
+	Copyright (C) 2017-2019 The LineageOS Project
+	Copyright (C) 2018-2019 The LightningFastRom Project
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -16,7 +17,7 @@
 	limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="lineageparts_title">LineageOS Ayarları</string>
+    <string name="lineageparts_title">LightningFastRom Ayarları</string>
     <string name="loading">Yükleniyor\u2026</string>
     <string name="dlg_ok">TAMAM</string>
     <string name="cancel">İptal</string>
@@ -402,11 +403,11 @@
     <string name="contributions_info_msg">&lt;b&gt;Tüm katkı sağlayanlar:&lt;/b&gt; &lt;xliff:g id="total_contributors"&gt;%1$s&lt;/xliff:g&gt;&lt;br/&gt;&lt;br/&gt;
                  &lt;b&gt;Toplam girdi:&lt;/b&gt; &lt;xliff:g id="total_commits"&gt;%2$s&lt;/xliff:g&gt;&lt;br/&gt;&lt;br/&gt;
                  &lt;b&gt;Son güncelleme:&lt;/b&gt; &lt;xliff:g id="date"&gt;%3$s&lt;/xliff:g&gt;</string>
-    <string name="anonymous_statistics_title">LineageOS istatistikleri</string>
-    <string name="anonymous_statistics_summary">Anonim istatistik raporlamayı tercih ederek LineageOS\'u daha iyi hale getirmeye yardımcı olun</string>
+    <string name="anonymous_statistics_title">LightningFastRom istatistikleri</string>
+    <string name="anonymous_statistics_summary">Anonim istatistik raporlamayı tercih ederek LightningFastRom\'u daha iyi hale getirmeye yardımcı olun</string>
     <string name="anonymous_statistics_warning_title">Hakkında</string>
-    <string name="anonymous_statistics_warning">LineageOS İstatistiklerine dahil olmak, cihazlar arasındaki benzersiz yüklemeleri izlemek için
-        LineageOS geliştiricilerine kişisel olmayan verilerin gönderilmesine izin verecektir. Gönderilen bilgiler, gizliliğinizi veya
+    <string name="anonymous_statistics_warning">LightningFastRom İstatistiklerine dahil olmak, cihazlar arasındaki benzersiz yüklemeleri izlemek için
+        LightningFastRom geliştiricilerine kişisel olmayan verilerin gönderilmesine izin verecektir. Gönderilen bilgiler, gizliliğinizi veya
         kişisel verilerinizi tehlikeye atmayan benzersiz bir tanımlayıcıyı içerir. Veriler her önyükleme sırasında gönderilir.\n\nGönderilen verilere bir örnek için Verileri Önizle üzerine dokunun.</string>
     <string name="enable_reporting_title">Raporlamayı etkinleştir</string>
     <string name="preview_data_title">Veriyi önizle</string>
@@ -518,7 +519,7 @@
     <string name="trust_feature_security_patches_value_new">güncel</string>
     <string name="trust_feature_security_patches_value_medium">birkaç ay eski</string>
     <string name="trust_feature_security_patches_value_old">eski</string>
-    <string name="trust_feature_security_patches_explain">Güvenlik kısıtlamalarını atlamak ve cihazınızda kalıcı hasara neden olmak için kötü amaçlı uygulamalar tarafından kötüye kullanılabilecek hataları gidermek için SoC satıcılarıyla işbirliği içinde Google tarafından aylık olarak güvenlik yamaları yayınlanır. Google tarafından kullanıma sunulan yamalar, desteklenen tüm cihazlarda her ay uygulanır, ancak tescilli koddaki yamalar sadece cihazınızın üreticisi tarafından uygulanabilir. Cihazınızı güvende tutmak için LineageOS yapınızın her zaman güncel olduğundan ve (varsa) satıcı dosyanızın LineageOS tarafından önerilen en yeni sürüme güncellendiğinden emin olun.</string>
+    <string name="trust_feature_security_patches_explain">Güvenlik kısıtlamalarını atlamak ve cihazınızda kalıcı hasara neden olmak için kötü amaçlı uygulamalar tarafından kötüye kullanılabilecek hataları gidermek için SoC satıcılarıyla işbirliği içinde Google tarafından aylık olarak güvenlik yamaları yayınlanır. Google tarafından kullanıma sunulan yamalar, desteklenen tüm cihazlarda her ay uygulanır, ancak tescilli koddaki yamalar sadece cihazınızın üreticisi tarafından uygulanabilir. Cihazınızı güvende tutmak için LightningFastRom yapınızın her zaman güncel olduğundan ve (varsa) satıcı dosyanızın LightningFastRom tarafından önerilen en yeni sürüme güncellendiğinden emin olun.</string>
     <string name="trust_feature_encryption">Şifreleme</string>
     <string name="trust_feature_encryption_value_enabled">Etkin</string>
     <string name="trust_feature_encryption_value_nolock">Güvenli bir kilit ekranına ihtiyaç duyar</string>
