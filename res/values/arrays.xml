@@ -268,6 +268,46 @@
         <item>0</item>
     </string-array>
 
+    <string-array name="status_bar_clock_position_entries_hole_punch_left" translatable="false">
+        <item>@string/status_bar_clock_position_right</item>
+        <item>@string/status_bar_clock_position_center</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_entries_hole_punch_left_rtl" translatable="false">
+        <item>@string/status_bar_clock_position_center</item>
+        <item>@string/status_bar_clock_position_right</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_values_hole_punch_left" translatable="false">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_values_hole_punch_left_rtl" translatable="false">
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_entries_hole_punch_right" translatable="false">
+        <item>@string/status_bar_clock_position_right</item>
+        <item>@string/status_bar_clock_position_center</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_entries_hole_punch_right_rtl" translatable="false">
+        <item>@string/status_bar_clock_position_center</item>
+        <item>@string/status_bar_clock_position_left</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_values_hole_punch_right" translatable="false">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="status_bar_clock_position_values_hole_punch_right_rtl" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <string-array name="status_bar_battery_style_entries" translatable="false">
         <item>@string/status_bar_battery_style_icon_portrait</item>
         <item>@string/status_bar_battery_style_circle</item>

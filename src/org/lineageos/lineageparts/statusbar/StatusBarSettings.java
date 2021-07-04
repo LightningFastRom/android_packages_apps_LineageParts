@@ -58,6 +58,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final int PULLDOWN_DIR_RIGHT = 1;
     private static final int PULLDOWN_DIR_LEFT = 2;
 	private static final int PULLDOWN_DIR_BOTH = 3;
+	
+	private static final int HOLE_PUNCH_CAMERA_POSITION_RIGHT = 1;
+    private static final int HOLE_PUNCH_CAMERA_POSITION_CENTER = 2;
+	private static final int HOLE_PUNCH_CAMERA_POSITION_LEFT = 3;
 
     private static final String NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
 
@@ -70,13 +74,17 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private PreferenceScreen mNetworkTrafficPref;
 
     private boolean mHasNotch;
+	private int mHolePunchCameraPosition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.status_bar_settings);
 
-        mNetworkTrafficPref = findPreference(NETWORK_TRAFFIC_SETTINGS);
+        sHasNotch = getResources().getBoolean(
+                org.lineageos.platform.internal.R.bool.config_haveNotch);
+		mHolePunchCameraPosition = getResources().getInteger(
+                org.lineageos.platform.internal.R.integer.config_holePunchCameraPosition);
 
         mHasNotch = DeviceUtils.hasNotch(getActivity());
         if (mHasNotch) {
@@ -126,31 +134,55 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             mStatusBarAmPm.setSummary(R.string.status_bar_am_pm_summary);
 		}
 
-        final boolean disallowCenteredClock = mHasNotch || getNetworkTrafficStatus() != 0;
+        final boolean disallowCenteredClock = mHasNotch || HasCenterPunch();
 
         // Adjust status bar preferences for RTL
         if (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-            if (disallowCenteredClock) {
-                mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_notch_rtl);
-                mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_notch_rtl);
+            if (disallowCenteredClock || HasCenterPunch()) {
+                	mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_notch_rtl);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_notch_rtl);
             } else {
-                mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_rtl);
-                mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_rtl);
+				if (mHolePunchCameraPosition == HOLE_PUNCH_CAMERA_POSITION_RIGHT) {
+					mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_hole_punch_right_rtl);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_hole_punch_right_rtl);
+				} else if (mHolePunchCameraPosition == HOLE_PUNCH_CAMERA_POSITION_LEFT) {
+					mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_hole_punch_left_rtl);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_hole_punch_left_rtl);
+				} else {
+                	mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_rtl);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_rtl);
+				}
             }
             mQuickPulldown.setEntries(R.array.status_bar_quick_qs_pulldown_entries_rtl);
             mQuickPulldown.setEntryValues(R.array.status_bar_quick_qs_pulldown_values_rtl);
-        } else if (disallowCenteredClock) {
-            mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_notch);
+        } else if (disallowCenteredClock || HasCenterPunch()) {
+			mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_notch);
             mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_notch);
         } else {
-            mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries);
-            mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values);
+            	if (mHolePunchCameraPosition == HOLE_PUNCH_CAMERA_POSITION_RIGHT) {
+					mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_hole_punch_right);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_hole_punch_right);
+				} else if (mHolePunchCameraPosition == HOLE_PUNCH_CAMERA_POSITION_LEFT) {
+					mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries_hole_punch_left);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values_hole_punch_left);
+				} else {
+                	mStatusBarClock.setEntries(R.array.status_bar_clock_position_entries);
+                	mStatusBarClock.setEntryValues(R.array.status_bar_clock_position_values);
+				}
         }
 
         // Disable network traffic preferences if clock is centered in the status bar
         updateNetworkTrafficStatus(getClockPosition());
     }
-
+	
+	public boolean HasCenterPunch() {
+		if (mHolePunchCameraPosition == HOLE_PUNCH_CAMERA_POSITION_CENTER) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         int value = Integer.parseInt((String) newValue);
