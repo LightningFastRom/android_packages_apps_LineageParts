@@ -651,7 +651,7 @@
     <string name="egg_title" translatable="false">LightningFastRom Easter Egg</string>
 
     <!-- Trust interface -->
-    <string name="trust_title" translatable="false">@*LightningFastRom.platform:string/trust_feature_name</string>
+    <string name="trust_title" translatable="false">@*lineageos.platform:string/trust_feature_name</string>
     <string name="trust_category_features">Status</string>
     <string name="trust_feature_selinux">SELinux</string>
     <string name="trust_feature_selinux_value_enforcing">Enforcing</string>
