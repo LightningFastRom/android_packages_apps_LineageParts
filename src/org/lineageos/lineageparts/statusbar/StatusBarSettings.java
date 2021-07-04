@@ -29,6 +29,7 @@ import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
 import lineageos.preference.LineageSystemSettingListPreference;
+import lineageos.preference.SecureSettingSwitchPreference;
 import lineageos.providers.LineageSettings;
 
 import org.lineageos.lineageparts.R;
@@ -64,9 +65,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     private LineageSystemSettingListPreference mQuickPulldown;
     private LineageSystemSettingListPreference mStatusBarClock;
-    private LineageSystemSettingListPreference mStatusBarAmPm;
-    private LineageSystemSettingListPreference mStatusBarBattery;
-    private LineageSystemSettingListPreference mStatusBarBatteryShowPercent;
+    private SecureSettingSwitchPreference mStatusBarAmPm;
 
     private PreferenceCategory mStatusBarBatteryCategory;
     private PreferenceCategory mStatusBarClockCategory;
@@ -117,16 +116,17 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             getPreferenceScreen().addPreference(mStatusBarClockCategory);
         }
 
-        if (TextUtils.delimitedStringContains(curIconBlacklist, ',', "battery")) {
-            getPreferenceScreen().removePreference(mStatusBarBatteryCategory);
-        } else {
-            getPreferenceScreen().addPreference(mStatusBarBatteryCategory);
-        }
-
+		final boolean disallowAMPM = sHasNotch;
+		
         if (DateFormat.is24HourFormat(getActivity())) {
             mStatusBarAmPm.setEnabled(false);
             mStatusBarAmPm.setSummary(R.string.status_bar_am_pm_info);
-        }
+		} else if (disallowAMPM) {
+			getPreferenceScreen().removePreference(mStatusBarAmPm);
+        } else {
+			mStatusBarAmPm.setEnabled(true);
+            mStatusBarAmPm.setSummary(R.string.status_bar_am_pm_summary);
+		}
 
         final boolean disallowCenteredClock = mHasNotch || getNetworkTrafficStatus() != 0;
 
